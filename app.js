@@ -1,6 +1,45 @@
 angular
 
-.module('pivotApp', [])
+.module('pivotApp', ['ngRoute'])
+
+.config(['$routeProvider', function($routeProvider) {
+    $routeProvider
+        .when('/', {
+        templateUrl: 'static/partials/index.html',
+        controller: 'ToolsCtrl'
+      })
+        .when('/tools', {
+        templateUrl: 'static/partials/toolslist.html',
+        controller: 'ToolsCtrl'
+      })
+        .when('/articles', {
+        templateUrl: 'static/partials/articleslist.html',
+        controller: 'ArticlesCtrl'
+      })
+        .when('/customers', {
+        templateUrl: 'static/partials/customerslist.html',
+        controller: 'CustomersCtrl'
+      })
+        .when('/customers/:customerId', {
+        templateUrl: 'static/partials/customer.html',
+        controller: 'CustomerCtrl'
+      })
+        .when('/edittools', {
+        templateUrl: 'static/partials/edittools.html',
+        controller: 'ToolsCtrl'
+      })
+        .when('/editarticles', {
+        templateUrl: 'static/partials/editarticles.html',
+        controller: 'ArticlesCtrl'
+      })
+        .when('/editcustomers', {
+        templateUrl: 'static/partials/editcustomers.html',
+        controller: 'CustomersCtrl'
+      })
+        .otherwise({
+        redirectTo: '/'
+      });
+}])
 
 .controller("ToolsCtrl", function ($scope, $http) {
 
