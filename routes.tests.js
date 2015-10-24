@@ -20,7 +20,7 @@ describe('Routes test', function() {
     // When a user navigates to the index page, they are shown the index page with the proper
     // controller
     it('should load the index page on successful load of /', function(){
-        $httpBackend.expectGET('static/partials/index.html').respond(200, 'main HTML');
+        $httpBackend.expectGET('static/partials/index.html').respond(200, 'index HTML');
         expect($location.path()).toBe('');
 
         $location.path('/');
@@ -37,7 +37,7 @@ describe('Routes test', function() {
     });
 
     it('should redirect to the index path on non-existent route', function(){
-        $httpBackend.expectGET('static/partials/index.html').respond(200, 'main HTML');
+        $httpBackend.expectGET('static/partials/index.html').respond(200, 'index HTML');
         expect($location.path()).toBe('');
 
         $location.path('/a/non-existent/route');
@@ -48,9 +48,8 @@ describe('Routes test', function() {
         expect($route.current.controller).toBe('ToolsCtrl');
     });
 
-
-    it('should load the index page on successful load of /tools', function(){
-        $httpBackend.expectGET('static/partials/toolslist.html').respond(200, 'main HTML');
+    it('should load the tools page on successful load of /tools', function(){
+        $httpBackend.expectGET('static/partials/toolslist.html').respond(200, 'tools HTML');
         expect($location.path()).toBe('');
 
         $location.path('/tools');
@@ -59,6 +58,30 @@ describe('Routes test', function() {
 
         expect($location.path()).toBe( '/tools' );
         expect($route.current.controller).toBe('ToolsCtrl');
+    });
+
+    it('should load the articles page on successful load of /articles', function(){
+        $httpBackend.expectGET('static/partials/articleslist.html').respond(200, 'articles HTML');
+        expect($location.path()).toBe('');
+
+        $location.path('/articles');
+
+        $rootScope.$digest();
+
+        expect($location.path()).toBe( '/articles' );
+        expect($route.current.controller).toBe('ArticlesCtrl');
+    });
+
+    it('should load the customers page on successful load of /customers', function(){
+        $httpBackend.expectGET('static/partials/customerslist.html').respond(200, 'customers HTML');
+        expect($location.path()).toBe('');
+
+        $location.path('/customers');
+
+        $rootScope.$digest();
+
+        expect($location.path()).toBe( '/customers' );
+        expect($route.current.controller).toBe('CustomersCtrl');
     });
 
 });
